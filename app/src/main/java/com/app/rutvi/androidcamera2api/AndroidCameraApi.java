@@ -1,13 +1,10 @@
 package com.app.rutvi.androidcamera2api;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -21,6 +18,7 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -30,18 +28,23 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Size;
+import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.TextBlock;
+import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -58,7 +61,9 @@ public class AndroidCameraApi extends AppCompatActivity {
 
     private static final String TAG = "AndroidCameraApi";
     private Button takePictureButton;
+    private Button btnProcess;
     private TextureView textureView;
+    private TextRecognizer textrecognizer;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
 
     static {
@@ -81,6 +86,7 @@ public class AndroidCameraApi extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
     private ImageView mPhotoCapturedImageView;
+    private TextView txtResult;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -223,6 +229,37 @@ public class AndroidCameraApi extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                    //image to text <code></code>
+                    btnProcess = (Button)findViewById(R.id.btn_getText);
+                        txtResult = (TextView)findViewById(R.id.textview_result);
+                        btnProcess.setOnClickListener(new View.OnClickListener()
+                        {
+                         public void onClick(View view)
+                         {
+
+                             textrecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+                             if(!textrecognizer.isOperational()) {
+                                 Log.e("ERROR", "Detector dependencies are not yet available");
+                                }
+                             else{
+                                     Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+                                     SparseArray<TextBlock> items = textrecognizer.detect(frame);
+                                     StringBuilder stringBuilder = new StringBuilder();
+                                     for (int i = 0; i<items.size(); i++)
+                                     {
+                                         TextBlock item = items.valueAt(i);
+                                         stringBuilder.append(item.getValue());
+                                         stringBuilder.append("\n");
+                                     }
+                                 txtResult.setText(stringBuilder.toString());
+                                 }
+
+                             }
+
+                         }
+
+                        );
+
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();

@@ -27,5 +27,22 @@
         android:id="@+id/capturePhotoImageView"
         android:layout_above="@id/btn_takepicture"
         />
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:id="@+id/textview_result"
+        android:gravity="center_horizontal"
+        android:background="#33000000"
+        android:text="NO TEXT"
+        android:textSize="@dimen/font_size"
+        />
+    <Button
+        android:id="@+id/btn_getText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
 
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:text="OCR" />
 </RelativeLayout>
