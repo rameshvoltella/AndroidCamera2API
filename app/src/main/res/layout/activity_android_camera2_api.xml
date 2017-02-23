@@ -15,8 +15,8 @@
         android:layout_alignParentBottom="true" />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="2448dp"
+        android:layout_height="3264dp"
         android:id="@+id/capturePhotoImageView"
         android:layout_alignParentBottom="true"
         />
@@ -33,13 +33,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="76dp" />
     <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/btn_takepicture"
-        android:layout_width="109dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Capture"
+        android:background="@drawable/camera"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/textview_result" />
+        <!--android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:text="Capture"
+        android:layout_marginBottom="16dp"
+        -->
+
 
     <Button
         android:id="@+id/btn_getText"

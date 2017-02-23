@@ -193,8 +193,8 @@ public class AndroidCameraApi extends AppCompatActivity {
             if (characteristics != null) {
                 jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
             }
-            int width = 640; //640
-            int height = 480; //480
+            int width = 2448; //640
+            int height = 3264; //480
             if (jpegSizes != null && 0 < jpegSizes.length) {
                 width = jpegSizes[0].getWidth();
                 height = jpegSizes[0].getHeight();
@@ -224,7 +224,7 @@ public class AndroidCameraApi extends AppCompatActivity {
                         save(bytes);
                         final Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
                         try {
-                           // bitmap.setPixel(1024,678,0);
+                                //bitmap.setPixel(1024,678,0);
                             mPhotoCapturedImageView.getDisplay();
                             mPhotoCapturedImageView.setImageBitmap(bitmap);
                         } catch (Exception e) {
