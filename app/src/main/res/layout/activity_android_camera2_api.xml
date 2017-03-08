@@ -38,7 +38,8 @@
         android:id="@+id/btn_takepicture"
         android:background="@drawable/camera"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textview_result" />
+        android:layout_alignEnd="@+id/textview_result"
+        />
         <!--android:layout_width="109dp"
         android:layout_height="wrap_content"
         android:text="Capture"
@@ -56,16 +57,6 @@
         android:layout_alignStart="@+id/textview_result"
         android:layout_marginStart="36dp" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/btn_takepicture"
-        android:layout_alignTop="@+id/textview_result">
-
-    </LinearLayout>
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="68dp"
@@ -74,6 +65,15 @@
         android:background="@color/cast_expanded_controller_background_color"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+    </LinearLayout>
 
 
 </RelativeLayout>
